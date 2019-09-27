@@ -1,0 +1,39 @@
+Apple Inc. Database Project
+Jennifer Murray
+
+# Created a DBMS within Microsoft Access for Apple Inc. in order to help improve efficiency of predicting demand and procurement processes
+# specifically created for Apple's brick-and-mortar locations
+
+# First query - pulling various information about customers and which products they bought
+
+SELECT CUSTOMERS.CUS_ID, PROD_ID, PROD_TYPE, PROD_PRICE
+FROM PRODUCTS, CUSTOMERS, INVOICE
+WHERE CUSTOMERS.CUS_ID = INVOICE.CUS_ID
+AND INVOICE.INVOICE_ID = PRODUCTS.INVOICE_ID;
+
+# Second query - used to see customers and the types of services (i.e. screen replacement)
+
+SELECT CUSTOMERS.CUS_ID, SERVICE_ID, SERVICE_TYPE, SERVICE_PRICE
+FROM SERVICES, CUSTOMERS, APPOINTMENT
+WHERE CUSTOMERS.CUS_ID = APPOINTMENT.CUS_ID
+AND APPOINTMENT.APPOINTMENT_ID = SERVICES.APPOINTMENT_ID;
+
+# Third query - used to see which products are sold in which store (i.e. store #4 only sells iphone 8)
+
+SELECT STORES.STORE_ID, PRODUCTS.PROD_ID, PROD_TYPE, PROD_PRICE
+FROM PRODUCTS, STORES
+WHERE STORES.STORE_ID = PRODUCTS.STORE_ID;
+
+# Fourth query - used to determine which vendors sell which products
+
+SELECT VENDORS.VENDOR_ID, PRODUCTS.PROD_ID, PROD_TYPE, PROD_PRICE
+FROM VENDORS, PRODUCTS
+WHERE VENDORS.VENDOR_ID = PRODUCTS.VENDOR_ID;
+
+# Fifth query - pulling information about stores and which services they provide
+
+SELECT STORES.STORE_ID, SERVICES.SERVICE_ID, SERVICE_TYPE, SERVICE_PRICE
+FROM SERVICES, STORES
+WHERE STORES.STORE_ID = SERVICES.STORE_ID;
+
+# Used these queries in order to develop forms and reports based off the information provided.
